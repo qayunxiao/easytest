@@ -15,11 +15,17 @@ class Error:
     USER_OR_PAWD_ERROR = {"10011": "用户名密码错误"}
     PAWD_ERROR = {"10012": "两次密码不一致"}
     USER_EXIST = {"10013": "用户已被注册"}
+
     PROJECT_NAME_EXIST = {"10021":"项目名称已存在"}
     PROJECT_NOT_EXIST = {"10022":"项目不已存在"}
     PROJECT_IS_DELETE = {"10023":"项目已删除"}
-    FILE_TYPE_ERROR = {"10024":"文件类型错误"}
-    FILE_SIZE_ERROR = {"10025":"文件过大"}
+
+    FILE_TYPE_ERROR = {"10031":"文件类型错误"}
+    FILE_SIZE_ERROR = {"10032":"文件过大"}
+
+    MODULE_NAME_EXIST = {"10041":"模块名称已存在"}
+    MODULE_NOT_EXIST = {"10042":"模块不已存在"}
+    MODULE_IS_DELETE = {"10043":"模块已删除"}
 
 def model_to_dict(instance: object) -> dict:
     """

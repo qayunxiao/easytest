@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2022/12/20 14:42
 # @Author  : alvin
-# @File    : api.py
+# @File    : module_api.py
 # @Software: PyCharm
 
 import os
@@ -44,6 +44,18 @@ def project_list(request, **kwargs):
     获取项目列表
     auth=None 该接口不需要认证
     """
+    # data = [
+    #         {
+    #             "id": p.id,
+    #             "name": p.name,
+    #             "describe": p.describe,
+    #             "image": p.image,
+    #             "create_time": p.c_time
+    #         }
+    #         for p in Project.objects.filter( is_delete=False ).all()
+    #     ]
+    # print( data )
+    # return response( item=data )
     return Project.objects.filter(is_delete=False).all()
 
 

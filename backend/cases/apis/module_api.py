@@ -1,25 +1,17 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2022/12/20 14:42
 # @Author  : alvin
-# @File    : api.py
+# @File    : module_api.py
 # @Software: PyCharm
 
-import os
-import hashlib
-from ninja import File
-from ninja.files import UploadedFile
 from ninja import Router
 from django.shortcuts import get_object_or_404
-from typing import List
-from ninja.pagination import paginate, LimitOffsetPagination, PageNumberPagination
 from ninja.params import Query
 
 from backend.common import response, Error, model_to_dict
-from backend.pagination import CustomPagination
-from backend.settings import IMAGE_DIR
 from cases.models import Module
 from projects.models import Project
-from cases.api_schema import ModuleIn, ProjectIn
+from cases.apis.api_schema import ModuleIn, ProjectIn
 
 router = Router(tags=["cases"])
 
@@ -56,7 +48,9 @@ def child_node(nodes, current_node):
     """
     判断有没有子节点
     """
+    print("child_node ->nodes",nodes)
     for node in nodes:
+        print("child_node ->node",node)
         if node["parent_id"] == current_node["id"]:
             return True
     return False

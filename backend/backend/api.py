@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2022/12/20 9:12
 # @Author  : alvin
-# @File    : api.py
+# @File    : module_api.py
 # @Software: PyCharm
-from datetime import datetime
 from ninja import  NinjaAPI
 from ninja.security import HttpBearer
 from users.api import router as users_router
 from projects.api import router as projects_router
-
+from cases.apis.module_api import router as cases_router
 from django.contrib.sessions.models import Session
-from backend.settings import SESSION_COOKIE_AGE
+
 
 class InvalidToken(Exception):
     """无效的token"""
@@ -58,4 +57,6 @@ def on_overdue_token(request, exc):
 
 api.add_router("/users/",users_router)
 api.add_router("/projects/",projects_router)
+api.add_router("/cases/",cases_router)
+
 
