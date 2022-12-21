@@ -27,6 +27,13 @@ class Error:
     MODULE_NOT_EXIST = {"10042":"模块不已存在"}
     MODULE_IS_DELETE = {"10043":"模块已删除"}
 
+    CASE_METHOD_ERROR = {"10050":"请求方法错误"}
+    CASE_HEADER_ERROR = {"10051":"请求Header错误"}
+    CASE_PARAMS_ERROR = {"10052":"请求参数类型错误"}
+    CASE_ASSERT_ERROR = {"10053":"断言类型错误"}
+    CASE_IS_DELETE = {"10054":"CASE 已经删除"}
+
+
 def model_to_dict(instance: object) -> dict:
     """
     对象转字典
@@ -59,7 +66,7 @@ def response(success: bool = True, error=None, item=None) -> dict:
             "msg": error_msg
         }
     }
-
+    print("item type",type(item))
     if isinstance(item, dict):
         resp_data["item"] = item
     elif isinstance(item, list):

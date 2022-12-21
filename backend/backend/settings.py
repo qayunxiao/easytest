@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'projects',
     'module',
     'cases',
+    'tasks',
 ]
 
 MIDDLEWARE = [
