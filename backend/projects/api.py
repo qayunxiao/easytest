@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-# @Time    : 2022/12/20 14:42
-# @Author  : alvin
-# @File    : module_api.py
-# @Software: PyCharm
-
 import os
 import hashlib
 from ninja import File
@@ -11,12 +5,13 @@ from ninja.files import UploadedFile
 from ninja import Router
 from django.shortcuts import get_object_or_404
 from typing import List
-from ninja.pagination import paginate, LimitOffsetPagination, PageNumberPagination
+from ninja.pagination import paginate
 from backend.common import response, Error, model_to_dict
 from backend.pagination import CustomPagination
 from backend.settings import IMAGE_DIR
 from projects.models import Project
 from projects.api_schema import ProjectIn, ProjectOut
+from cases.models import Module, TestCase
 
 router = Router(tags=["projects"])
 
@@ -44,18 +39,10 @@ def project_list(request, **kwargs):
     获取项目列表
     auth=None 该接口不需要认证
     """
-    # data = [
-    #         {
-    #             "id": p.id,
-    #             "name": p.name,
-    #             "describe": p.describe,
-    #             "image": p.image,
-    #             "create_time": p.c_time
-    #         }
-    #         for p in Project.objects.filter( is_delete=False ).all()
-    #     ]
-    # print( data )
-    # return response( item=data )
+    data = Project.objects.filter(is_delete=False).all()
+    print(type(data))
+    for p in data:
+        print(p.id,p.name,p.describe,p.image)
     return Project.objects.filter(is_delete=False).all()
 
 
@@ -73,8 +60,8 @@ def project_details(request, project_id: int):
         "id": project.id,
         "name": project.name,
         "describe": project.describe,
-        "images": project.image,
-        "create_time": project.c_time
+        "image": project.image,
+        "create_time": project.create_time
     }
     return response(item=data)
 
@@ -133,21 +120,21 @@ def project_image_upload(request, file: UploadedFile = File(...)):
     return response(item={"name": file_name})
 
 
-# @router.get("/{project_id}/cases", auth=None)
-# def project_case_list(request, project_id: int):
-#     """
-#     通过项目ID 获取用例列表
-#     auth=None 该接口不需要认证
-#     """
-#     project = get_object_or_404(Project, id=project_id)
-#     if project.is_delete is True:
-#         return response(error=Error.PROJECT_IS_DELETE)
-#
-#     modules = Module.objects.filter(project_id=project.id)
-#     cases_list = []
-#     for m in modules:
-#         cases = TestCase.objects.filter(module_id=m.id)
-#         for c in cases:
-#             cases_list.append(model_to_dict(c))
-#
-#     return response(item=cases_list)
+@router.get("/{project_id}/cases", auth=None)
+def project_case_list(request, project_id: int):
+    """
+    通过项目ID 获取用例列表
+    auth=None 该接口不需要认证
+    """
+    project = get_object_or_404(Project, id=project_id)
+    if project.is_delete is True:
+        return response(error=Error.PROJECT_IS_DELETE)
+
+    modules = Module.objects.filter(project_id=project.id)
+    cases_list = []
+    for m in modules:
+        cases = TestCase.objects.filter(module_id=m.id)
+        for c in cases:
+            cases_list.append(model_to_dict(c))
+
+    return response(item=cases_list)

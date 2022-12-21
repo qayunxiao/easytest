@@ -56,16 +56,16 @@ class CaseIn(Schema):
      response: str
      assert_type: AssertType
      assert_text: str
-     # extract_list: list = None
+     extract_list: list = None
 
 
 class CaseDebugIn(Schema):
      """用例调试入参"""
      url: str
      method: str
-     header: dict
+     header: str
      params_type: str
-     params_body: dict
+     params_body: str
 
 
 class CaseAssertIn(Schema):
