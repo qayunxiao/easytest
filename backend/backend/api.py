@@ -9,6 +9,8 @@ from users.api import router as users_router
 from projects.api import router as projects_router
 from module.api import router as module_router
 from cases.api  import router as cases_router
+from tasks.api  import router as tasks_router
+from tasks.report_api  import router as report_router
 from django.contrib.sessions.models import Session
 
 
@@ -58,5 +60,7 @@ api.add_router("/users/",users_router)
 api.add_router("/projects/",projects_router)
 api.add_router("/module/",module_router)
 api.add_router("/cases/",cases_router)
+api.add_router("/tasks/",tasks_router)
+api.add_router("/report/",report_router)
 
 
