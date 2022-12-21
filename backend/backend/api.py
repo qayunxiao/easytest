@@ -7,7 +7,8 @@ from ninja import  NinjaAPI
 from ninja.security import HttpBearer
 from users.api import router as users_router
 from projects.api import router as projects_router
-from cases.apis.module_api import router as cases_router
+from module.api import router as module_router
+from cases.api  import router as cases_router
 from django.contrib.sessions.models import Session
 
 
@@ -53,10 +54,9 @@ def on_overdue_token(request, exc):
     """过期token返回类型 """
     return api.create_response(request, {"detail": "Overdue token supplied"}, status=401)
 
-
-
 api.add_router("/users/",users_router)
 api.add_router("/projects/",projects_router)
+api.add_router("/module/",module_router)
 api.add_router("/cases/",cases_router)
 
 

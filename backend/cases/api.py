@@ -11,7 +11,7 @@ from ninja.params import Query
 from backend.common import response, Error, model_to_dict
 from cases.models import Module
 from projects.models import Project
-from cases.apis.api_schema import ModuleIn, ProjectIn
+from module.api_schema import ModuleIn, ProjectIn
 
 router = Router(tags=["cases"])
 
