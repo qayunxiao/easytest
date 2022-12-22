@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+	<testsuite name="MyTest-20221221200700" tests="1" file=".py" time="0.902" timestamp="2022-12-21T20:07:01" failures="0" errors="1" skipped="0">
+		<testcase classname="MyTest" name="test_api_1_alvin_case" time="0.902" timestamp="2022-12-21T20:07:01" file="tasks\task_running\test_case.py" line="23">
+			<doc><![CDATA[test_api_1_alvin_case]]></doc>
+			<error type="OperationalError" message="no such table: cases_testextract"><![CDATA[Traceback (most recent call last):
+  File "C:\Program Files (x86)\Python\lib\site-packages\ddt.py", line 220, in wrapper
+    return func(self, *args, **kwargs)
+  File "E:\workspace\easytest\backend\tasks\task_running\test_case.py", line 69, in test_api
+    extracts = query_extract_value(case_id)
+  File "E:\workspace\easytest\backend\cases\common.py", line 51, in query_extract_value
+    extracts = cursor.execute(sql).fetchall()
+sqlite3.OperationalError: no such table: cases_testextract
+]]></error>
+			<system-out><![CDATA[resp {
+  "args": {}, 
+  "headers": {
+    "Accept": "*/*", 
+    "Accept-Encoding": "gzip, deflate", 
+    "Host": "httpbin.org", 
+    "User-Agent": "python-requests/2.26.0", 
+    "X-Amzn-Trace-Id": "Root=1-63a2f6ea-72a51a7e56b399ac3c15e097"
+  }, 
+  "origin": "110.251.46.41", 
+  "url": "http://httpbin.org/get"
+}
+
+sql is: SELECT * FROM cases_testextract WHERE case_id="1";
+]]></system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

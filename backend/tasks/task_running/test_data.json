@@ -1,0 +1,1 @@
+{"alvin case": {"case_id": 1, "url": "http://httpbin.org/get", "method": "get", "header": {}, "params_type": "params", "params_body": {}, "assert_type": "include", "assert_text": "get"}}
